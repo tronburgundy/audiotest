@@ -6,6 +6,7 @@ import time
 
 parser = argparse.ArgumentParser(description = "WAV to MP3 converter")
 parser.add_argument("-d", "--debug", dest='DEBUG', help="Debugging Mode", action='store_true')
+parser.add_argument("-i", "--input") 
 
 global args
 args = parser.parse_args()
