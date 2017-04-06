@@ -2,7 +2,6 @@
 
 import argparse
 import audiotools
-from timeit import timeit
 import time
 
 parser = argparse.ArgumentParser(description = "WAV to MP3 converter")
@@ -20,17 +19,20 @@ class AudioTester:
     def compress(self, fmt_string):	
         start = time.time()
         if fmt_string == 'mp3':
-            self.mp3 = self.raw.convert(self.name+'.mp3', audiotools.MP3Audio)
+            pcmraw = self.raw.to_pcm()
+            self.mp3 = pcmraw.convert(self.name+'.mp3', audiotools.MP3Audio)
+        end = time.time()
+        return end-start
 
 def main():
     tester = AudioTester(args.input)
-    tester.compress("mp3")
-    # Start timer
-    #time = timeit("tomp3()",setup="from __main__ import tomp3", number=1)
-    end = time.time()
-    print("Time to compress: ", end-start)
+    time = tester.compress("mp3")
+    print("Time to compress: ", time)
+
     #TODO: Repeat with other algorithms
+
     #TODO: Analyze frequency spectrum of compressed/uncompressed
+
     #TODO: Convert compressed files back to WAV
 
 if __name__ == "__main__":
