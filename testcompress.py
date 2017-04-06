@@ -1,3 +1,4 @@
+#!/usr/bin/python
 
 import argparse
 import audiotools
@@ -6,7 +7,7 @@ import time
 
 parser = argparse.ArgumentParser(description = "WAV to MP3 converter")
 parser.add_argument("-d", "--debug", dest='DEBUG', help="Debugging Mode", action='store_true')
-parser.add_argument("-i", "--input") 
+parser.add_argument("-i", "--input", type=str) 
 
 global args
 args = parser.parse_args()
@@ -22,7 +23,7 @@ class AudioTester:
             self.mp3 = self.raw.convert(self.name+'.mp3', audiotools.MP3Audio)
 
 def main():
-    tester = AudioTester('music.wav')
+    tester = AudioTester(args.input)
     tester.compress("mp3")
     # Start timer
     #time = timeit("tomp3()",setup="from __main__ import tomp3", number=1)
