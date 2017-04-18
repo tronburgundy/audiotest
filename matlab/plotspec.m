@@ -1,4 +1,5 @@
 function plotspec(sig, Fs)
+% PLOTSPEC designed by Abner Barros
 
 N = length(sig);
 S = abs(fft(sig));
