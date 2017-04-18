@@ -4,7 +4,9 @@ function out_sig = FILTERencode( filename )
 [in_sig, Fs] = audioread(filename);
 in_sig = in_sig(:,1);
 
+figure;
 plotspec(in_sig, Fs)
+hold on;
 
 % Compress the in_sig audiofile and get its data and sampling rate
 Wn = [100 4000]/(Fs/2);
@@ -16,5 +18,6 @@ audiowrite('FILTER_lossy.wav', filtered, Fs);
 [out_sig, Fs] = audioread('FILTER_lossy.wav');
 
 plotspec(out_sig, Fs)
+hold off;
 
 end

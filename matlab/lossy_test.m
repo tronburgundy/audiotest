@@ -1,10 +1,12 @@
-raw = 'HH_10.wav';
+clear;
 
-compressed = ACCencode(raw);
-statACC = compare(raw, compressed);
+file = 'bass.wav';
 
-compressed = OGGencode(raw);
-statOGG = compare(raw, compressed);
+ACCout = ACCencode(file);
+[MSE_ACC, retained_ACC] = audiocompare(file, 'ACC_lossy.wav');
 
-compressed = FILTERencode(raw);
-statFILTER = compare(raw, compressed);
+OGGout = OGGencode(file);
+[MSE_OGG, retained_OGG] = audiocompare(file, 'OGG_lossy.wav');
+
+FILTERout = FILTERencode(file);
+[MSE_FILTER, retained_FILTER] = audiocompare(file, 'FILTER_lossy.wav');
