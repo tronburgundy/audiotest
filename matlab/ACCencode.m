@@ -17,7 +17,10 @@ audiowrite('ACC_lossy.wav', acc, Fs);
 [out_sig, Fs] = audioread('ACC_lossy.wav');
 
 plotspec(out_sig, Fs)
-hold off
+title('Original vs. AAC')
+legend('original', 'reconstructed')
+xlabel('Frequency')
+ylabel('Magnitude')
 
 % Delete Temporary File
 delete('temp.mp4')

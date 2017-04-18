@@ -18,6 +18,11 @@ audiowrite('FILTER_lossy.wav', filtered, Fs);
 [out_sig, Fs] = audioread('FILTER_lossy.wav');
 
 plotspec(out_sig, Fs)
+title('Original vs. Custom Filter')
+legend('original', 'reconstructed')
+xlabel('Frequency')
+ylabel('Magnitude')
+
 hold off;
 
 end
